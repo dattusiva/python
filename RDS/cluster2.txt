@@ -1,0 +1,47 @@
+resource "aws_rds_cluster" "RdsCluster" {
+  engine = "aurora-postgresql"
+  engine_version = "13.3"
+  cluster_identifier = "aurora-postgres-cluster"
+  db_subnet_group_name = "${var.rds_public_subnet_group}"
+  master_username = "dbadmin"
+  master_password = random_password.RandomPasswordForDbSecret.result
+  vpc_security_group_ids   = ["${aws_security_group.mydb1.id}"]
+  port = "5432"
+  skip_final_snapshot = true
+  storage_encrypted = false
+  backup_retention_period = 1
+  deletion_protection = false
+}
+
+resource "aws_rds_cluster_instance" "RdsClusterInstance1" {
+  cluster_identifier = aws_rds_cluster.RdsCluster.id
+  instance_class = "db.t3.medium"i
+  engine = "aurora-postgresql"
+  	
+  db_subnet_group_name = "${var.rds_public_subnet_group}"
+  vpc_security_group_ids   = ["${aws_security_group.mydb1.id}"]
+}
+
+resource "aws_security_group" "mydb1" {
+  name = "mydb1"
+
+  description = "RDS postgres servers (terraform-managed)"
+  vpc_id = "${var.rds_vpc_id}"
+
+  # Only postgres in
+  ingress {
+    from_port = 5432
+    to_port = 5432
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # Allow all outbound traffic.
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+

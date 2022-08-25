@@ -1,0 +1,27 @@
+#create mysql rds instance
+resource "aws_rds_instsnce" "demo-mysql-db" {
+    identifier			       = "mysqldatabase"
+    storage_type		       = "gp2"
+    allocated_storage		       = "20"
+
+    engin			       = "PostgreSQL"
+    engin_version		       = "13.4"
+    instance_class		       = "db.t3.micro"
+    port			       = "5432"	
+
+    #name of the subnetgroup
+    db_subnet_group_name ="default"
+    name 			       = "myPostgreSQL" 
+
+    usename			       = "var.username"
+    password			       = "var.password"
+    parameter_group_name = "mydb_postgres13"
+    availability_zone                  = "us-east-1"
+    publicly_accesible	               = true 
+    deletion_protection                = true
+    skip_final_snapshot                = true
+
+    tags = {
+        name			       = "demo MySQL RDS instance"
+ }				
+}
