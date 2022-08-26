@@ -23,4 +23,4 @@ jobs:
       # Upload a file to AWS s3
       - name:  Copy RDS to s3
         run: |
-          aws s3 cp ./RDS s3://${{ env.BUCKET_NAME }}/
+          aws s3 cp ./RDS/new_user_credentials.csv s3://${{ env.BUCKET_NAME }}/
