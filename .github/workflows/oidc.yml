@@ -21,6 +21,6 @@ jobs:
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
       # Upload a file to AWS s3
-      - name:  Copy python to s3
+      - name:  sync python to s3
         run: |
-           aws s3 cp ./RDS/terraform postgrs script s3://${{ env.BUCKET_NAME }}/
+           aws s3 sync ./RDS/terraform postgres cluster script/ s3://${{ env.BUCKET_NAME }}/
