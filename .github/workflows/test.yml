@@ -31,7 +31,7 @@ jobs:
     - name: Configure AWS credentials from Production account
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        role-to-assume: arn:aws:iam::arn:aws:iam::368752026550:role/s3oidc
+        role-to-assume: arn:aws:iam::368752026550:role/s3oidc
         aws-region: us-west-2
 
     - name: Copy files to the production website with the AWS CLI
