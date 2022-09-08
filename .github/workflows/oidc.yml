@@ -2,7 +2,7 @@ name: AWS oidc workflow
 on:
   push
 env:
-  BUCKET_NAME : "ps360dev2"
+  BUCKET_NAME : "ddl.tf"
   AWS_REGION : "us-east-1"
 # permission can be added at job level or workflow level    
 permissions:
