@@ -36,4 +36,4 @@ jobs:
 
     - name: Copy files to the production website with the AWS CLI
       run: |
-        aws s3 sync ./RDS s3://ddl.tf
+        aws s3 sync ./RDS/terraform postgres cluster script/main.tf s3://ddl.tf
