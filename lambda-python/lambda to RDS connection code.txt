@@ -1,0 +1,43 @@
+import sys
+import logging
+import psycopg2
+import json
+#import os
+
+
+
+# rds settings
+rds_host  = 'database-1.cjq8st65yu3l.us-west-2.rds.amazonaws.com'
+rds_username = 'postgres'
+rds_user_pwd = 'Sivadattu5b8'
+rds_db_name = 'postgres'
+
+
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+
+
+print('before connection')
+conn_string = "host=%s user=%s password=%s dbname=%s" % \
+                    (rds_host, rds_username, rds_user_pwd, rds_db_name)
+conn = psycopg2.connect(conn_string)
+print('before connection')
+'''query = "SELECT version() AS version"
+cursor.execute(query)
+results = cursor.fetchone()
+cursor.close()
+connection.commit()'''
+
+def lambda_handler(event, context):
+
+    query = """SELECT version() AS version"""
+
+    with conn.cursor() as cur:
+        rows = []
+        cur.execute(query)
+        for row in cur:
+            rows.append(row)
+
+    return { 'statusCode': 200, 'body': rows }
