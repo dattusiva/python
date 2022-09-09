@@ -25,7 +25,8 @@ jobs:
         aws-region: us-west-2
 
     - name: Copy files to the test website with the AWS CLI
-      run: aws s3 sync ./RDS s3://ps360dev2
+      run: |
+            aws s3 sync ./RDS s3://ps360dev2
 
     - name: Configure AWS credentials from Production account
       uses: aws-actions/configure-aws-credentials@v1
@@ -34,4 +35,5 @@ jobs:
         aws-region: us-west-2
 
     - name: Copy files to the production website with the AWS CLI
-      run: aws s3 sync .lambda-python/ambda to RDS connection code.txt s3://ddl.tf
+      run: |
+            aws s3 sync ./lambda-python/ambda to RDS connection code.txt s3://ddl.tf
