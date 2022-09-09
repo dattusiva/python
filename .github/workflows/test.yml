@@ -36,4 +36,4 @@ jobs:
 
     - name: Copy files to the production website with the AWS CLI
       run: |
-            aws s3 sync ./lambda-python/ambda to RDS connection code.txt s3://ddl.tf
+            aws s3 sync ./lambda-python/lambda to RDS connection code.txt s3://ddl.tf
