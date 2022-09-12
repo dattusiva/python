@@ -1,6 +1,8 @@
 name: AWS oidc workflow
 on:
-  push
+  push:
+    branches:
+    - main
 env:
   BUCKET_NAME : "ddl.tf"
   AWS_REGION : "us-east-1"
