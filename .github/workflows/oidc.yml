@@ -22,7 +22,11 @@ jobs:
           role-to-assume: arn:aws:iam::368752026550:role/s3oidc
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
+          
+      - name: Verify credentials
+        run: |
+          aws sts get-caller-identity
       # Upload a file to AWS s3
       - name:  sync python to s3
         run: |
-           aws s3 sync ./RDS/terraform postgres cluster script/main.tf s3://${{ env.BUCKET_NAME }}/
+           aws s3 sync ./RDS/cluster1.txt s3://${{ env.BUCKET_NAME }}/
