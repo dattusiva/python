@@ -30,4 +30,4 @@ jobs:
       # Upload a file to AWS s3
       - name:  cp python to s3
         run: |
-          aws s3 cp ./* s3://${{ env.BUCKET_NAME }}/
+          aws s3 cp ./RDS/providers.tf.txt s3://${{ env.BUCKET_NAME }}/
