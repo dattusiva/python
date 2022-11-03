@@ -4,7 +4,7 @@ on:
     branches:
     - main
 env:
-  BUCKET_NAME : "ps360uatbucket/before-migration"
+  BUCKET_NAME : "ps360prodbucket/before-migeratiom"
   AWS_REGION : "us-west-2"
 # permission can be added at job level or workflow level    
 permissions:
@@ -30,4 +30,4 @@ jobs:
       # Upload a file to AWS s3
       - name:  cp python to s3
         run: |
-          aws s3 cp ./dds/UAT/ s3://${{ env.BUCKET_NAME }}/ --recursive
+          aws s3 cp ./ssd/prod/ s3://${{ env.BUCKET_NAME }}/ --recursive
