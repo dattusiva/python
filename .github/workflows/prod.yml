@@ -4,7 +4,7 @@ on:
     branches:
     - main
 env:
-  BUCKET_NAME : "ps360prodbucket/before-migeratiom"
+  BUCKET_NAME : "ps60prodbucket/before-migeratiom"
   AWS_REGION : "us-west-2"
 # permission can be added at job level or workflow level    
 permissions:
